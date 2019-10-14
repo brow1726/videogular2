@@ -86,7 +86,8 @@ export class VgDASH implements OnInit, OnChanges, OnDestroy {
             this.dash = dashjs.MediaPlayer().create();
             this.dash.getDebug().setLogToBrowserConsole(false);
             this.dash.initialize(this.ref.nativeElement);
-            this.dash.setAutoPlay(false);
+            this.dash.setInitialBitrateFor('video', 15000);
+            this.dash.setAutoPlay(true);
 
             this.dash.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, () => {
                 const audioList = this.dash.getBitrateInfoListFor('audio');

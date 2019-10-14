@@ -113,6 +113,20 @@ export class VgHLS implements OnInit, OnChanges, OnDestroy {
             // @ts-ignore
             this.hls.on(Hls.Events.MANIFEST_PARSED, (event, data) => {
                     const videoList = [];
+                    if(data.levels.length >= 5) {
+                        this.hls.config.startLevel = 4;
+                    } else {
+                        this.hls.config.startLevel = data.levels.length -1;
+                    }
+                    console.log('******************** this.hls ********************');
+                    console.log(this.hls);
+                    console.log('************************************************');
+                    console.log('******************** event ********************');
+                    console.log(event);
+                    console.log('************************************************');
+                    console.log('******************** data ********************');
+                    console.log(data);
+                    console.log('************************************************');
 
                     videoList.push({
                         qualityIndex: 0,
