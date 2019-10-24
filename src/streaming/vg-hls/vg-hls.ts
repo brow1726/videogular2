@@ -60,7 +60,8 @@ export class VgHLS implements OnInit, OnChanges, OnDestroy {
 
 
         this.config = <IHLSConfig>{
-            autoStartLoad: this.preload
+            autoStartLoad: this.preload,
+            startLevel: 4
         };
         // @ts-ignore
         this.config.xhrSetup = (xhr, url) => {
@@ -80,7 +81,7 @@ export class VgHLS implements OnInit, OnChanges, OnDestroy {
                 this.API.subscriptions.play.subscribe(
                     () => {
                         if (this.hls) {
-                            this.hls.startLoad(0);
+                            this.hls.startLoad();
                         }
                     }
                 )
@@ -118,15 +119,6 @@ export class VgHLS implements OnInit, OnChanges, OnDestroy {
                     } else {
                         this.hls.config.startLevel = data.levels.length -1;
                     }
-                    console.log('******************** this.hls ********************');
-                    console.log(this.hls);
-                    console.log('************************************************');
-                    console.log('******************** event ********************');
-                    console.log(event);
-                    console.log('************************************************');
-                    console.log('******************** data ********************');
-                    console.log(data);
-                    console.log('************************************************');
 
                     videoList.push({
                         qualityIndex: 0,
